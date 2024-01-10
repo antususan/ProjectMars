@@ -81,6 +81,10 @@ namespace ProjectMars.FeatureFiles
         [NUnit.Framework.TestCaseAttribute("English", "Basic", null)]
         [NUnit.Framework.TestCaseAttribute("123@#$", "Fluent", null)]
         [NUnit.Framework.TestCaseAttribute("Iam adding a new language as a sentence", "Conversational", null)]
+        [NUnit.Framework.TestCaseAttribute("Remembertoplayaroundwiththeapplicationtrytoexplorethefunctionalityaroundwhatthela" +
+            "nguageandskillsfeatureshavetoofferintheprofilepageRemembertouseGoogleQuestionhub" +
+            "orStackOverflowifyouarestuckonaproblem,weknowattimesitcanbefrustratingtobestucko" +
+            "naproblem", "Native/Bilingual", null)]
         public void CreateANewLanagugeRecordWithValidDetails(string language, string level, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -138,7 +142,7 @@ namespace ProjectMars.FeatureFiles
             argumentsOfScenario.Add("ValidLevel", validLevel);
             argumentsOfScenario.Add("InValidLanguage1", inValidLanguage1);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new lanaguge record with InValid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 23
+#line 25
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -148,16 +152,16 @@ namespace ProjectMars.FeatureFiles
             else
             {
                 this.ScenarioStart();
-#line 24
+#line 26
  testRunner.Given("I logged into Mars portal sucessfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 25
+#line 27
  testRunner.And("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 26
+#line 28
  testRunner.When(string.Format("I add invalid \'{0}\' and valid \'{1}\'", inValidLanguage, validLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 27
+#line 29
  testRunner.Then(string.Format("the record should  not be added \'{0}\' sucessfully", inValidLanguage1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -184,7 +188,7 @@ namespace ProjectMars.FeatureFiles
             argumentsOfScenario.Add("ExistingLevel", existingLevel);
             argumentsOfScenario.Add("ExistingLanguage1", existingLanguage1);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create an existing lanaguge to the list", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 35
+#line 37
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -194,19 +198,19 @@ namespace ProjectMars.FeatureFiles
             else
             {
                 this.ScenarioStart();
-#line 36
+#line 38
  testRunner.Given("I logged into Mars portal sucessfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 37
+#line 39
  testRunner.And("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 38
+#line 40
  testRunner.When(string.Format("I add new a \'{0}\' and \'{1}\'", language1, level1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 39
+#line 41
  testRunner.When(string.Format("I add an existing language\'{0}\' and \'{1}\'", existingLanguage, existingLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 40
+#line 42
  testRunner.Then(string.Format("the record should not be added \'{0}\'", existingLanguage1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -232,7 +236,7 @@ namespace ProjectMars.FeatureFiles
             argumentsOfScenario.Add("EditLanguage", editLanguage);
             argumentsOfScenario.Add("EditLevel", editLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit a lanaguge record with Valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 47
+#line 49
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -242,19 +246,19 @@ namespace ProjectMars.FeatureFiles
             else
             {
                 this.ScenarioStart();
-#line 48
+#line 50
  testRunner.Given("I logged into Mars portal sucessfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 49
+#line 51
  testRunner.And("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 50
+#line 52
  testRunner.And(string.Format("I create  \'{0}\' and \'{1}\'", createLanguage, createLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 51
+#line 53
  testRunner.When(string.Format("I update \'{0}\' and \'{1}\'", editLanguage, editLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 52
+#line 54
  testRunner.Then(string.Format("the record should be updated as new\'{0}\' and \'{1}\'", editLanguage, editLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -279,7 +283,7 @@ namespace ProjectMars.FeatureFiles
             argumentsOfScenario.Add("CreateLevel1", createLevel1);
             argumentsOfScenario.Add("DeleteLanguage", deleteLanguage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete language record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 60
+#line 62
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -289,19 +293,19 @@ namespace ProjectMars.FeatureFiles
             else
             {
                 this.ScenarioStart();
-#line 61
+#line 63
  testRunner.Given("I logged into Mars portal sucessfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 62
+#line 64
  testRunner.And("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 63
+#line 65
  testRunner.And(string.Format("I create a \'{0}\' and \'{1}\'", createLanguage1, createLevel1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 64
+#line 66
  testRunner.When("I delete a language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 65
+#line 67
  testRunner.Then(string.Format("the \'{0}\'  should be deleted sucessfully", deleteLanguage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

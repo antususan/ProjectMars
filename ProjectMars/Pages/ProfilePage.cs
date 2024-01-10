@@ -15,10 +15,10 @@ using TechTalk.SpecFlow;
 
 namespace ProjectMars.Pages
 {
-    public class ProfilePage
+    public class ProfilePage:CommonDriver
     {
         private IWebDriver webDriver;
-        public ProfilePage(IWebDriver driver)
+        public ProfilePage()
         {
             webDriver = driver;
         }
@@ -35,57 +35,48 @@ namespace ProjectMars.Pages
         private IWebElement addButtonLanguage => webDriver.FindElement(By.XPath("//input[@class='ui teal button']"));
         private IWebElement newLanguage => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
         private IWebElement newLevel => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
+        private IWebElement invalidLanguage => webDriver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
+        private IWebElement existingLanguage => webDriver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
         private IWebElement editButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
         private IWebElement editTextBox => webDriver.FindElement(By.XPath("//input[@placeholder='Add Language']"));
         private IWebElement updateButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]"));
         private IWebElement newEditLanguage => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
         private IWebElement newEditLevel => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
-        private IWebElement deleteButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i"));
+        private IWebElement deleteLanguageButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i"));
+        private IWebElement deletedLanguageData => webDriver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
 
-
-        public void GotoLanguageTab(IWebDriver driver)
+        public void GotoLanguageTab()
         {
             Thread.Sleep(2000);
             //wait.Waittobeclickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]", 5);         
             languageTab.Click();
         }
-        public void GotoSkillsTab(IWebDriver driver)
+        public void GotoSkillsTab()
         {
             //wait.Waittobeclickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]", 2);
             Thread.Sleep(2000);
             skillTab.Click();
         }
-        public void ResetLanguageRow(IWebDriver driver)
+        public void ResetLanguageRow()
         {
             int rowCount = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr")).Count;
             
             for (int i = 0; i < rowCount; i++)
             {
                 Thread.Sleep(2000);
-                IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]"));    
                 Thread.Sleep(2000);
-                deleteButton.Click();
+                deleteLanguageButton.Click();
             }
         }
-        public void ResetSkillRow(IWebDriver driver)
-        {
-            int rowCount = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr")).Count;
-            for (int i = 0; i < rowCount; i++)
-            {
-                Thread.Sleep(2000);
-                IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]"));
-                //Thread.Sleep(2000);
-                deleteButton.Click();
-            }
-        }
-        public void CreateLanguageRecord(IWebDriver driver,string language ,string level)
+        
+        public void CreateLanguageRecord(string language ,string level)
         {
 
-            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div", 5);
+            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div", 2);
 
             addNewButton.Click();
   
-            wait.Waittobevisible(driver, "Xpath", "//input[@placeholder='Add Language']",5);
+            wait.Waittobevisible(driver, "Xpath", "//input[@placeholder='Add Language']",2);
             
             addLanguageTextBox.SendKeys(language);
             
@@ -109,21 +100,31 @@ namespace ProjectMars.Pages
             addButtonLanguage.Click();
             Thread.Sleep(2000);
            }
-        public string GetLanguage(IWebDriver driver)
+        public string GetLanguage()
         {
-            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 10);
+            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 2);
             return newLanguage.Text;
         }
-        public string GetLevel(IWebDriver driver)
+        public string GetLevel()
         {
-            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]", 10);
+            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]", 2);
             return newLevel.Text;
         }
-
-        public void EditLanguageRecord(IWebDriver driver, string editlanguage, string editlevel)
+        public string GetInvalidLanguage()
+        {
+            wait.Waittobevisible(driver,"Xpath", "//*[@class='ns-box-inner']", 2);
+            return invalidLanguage.Text;
+        }
+        public string GetExistingLanguage()
+        {
+            wait.Waittobevisible(driver, "Xpath", "//*[@class='ns-box-inner']", 2);
+            return existingLanguage.Text;
+        }
+      
+        public void EditLanguageRecord( string editlanguage, string editlevel)
         {
 
-            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i", 5);
+            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i", 2);
             editButton.Click();
             editTextBox.Clear();
             editTextBox.SendKeys(editlanguage);
@@ -146,24 +147,29 @@ namespace ProjectMars.Pages
                 chooseFluentLanguageLevel.Click();
             }
                                                      
-            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]", 5); 
+            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]", 2); 
             updateButton.Click();
         }
-            public string GetEditLanguage(IWebDriver driver)
+            public string GetEditLanguage()
             {
             Thread.Sleep(2000);
             return newEditLanguage.Text;
             }
-            public string GetEditLevel(IWebDriver driver)
+            public string GetEditLevel()
             {
             Thread.Sleep(2000);                                                      
             return newEditLevel.Text;
             }
-        public void DeleteLanguageRecord(IWebDriver driver)
+        public void DeleteLanguageRecord()
         {
-            Thread.Sleep(2000);          
-            deleteButton.Click();
             Thread.Sleep(2000);
+            deleteLanguageButton.Click();
+            Thread.Sleep(2000);
+        }
+        public string GetDeleteLanguage()
+        {
+            wait.Waittobevisible(driver, "Xpath", "//*[@class='ns-box-inner']", 2);
+            return deletedLanguageData.Text;
         }
 
         //skill Tab 
@@ -177,6 +183,8 @@ namespace ProjectMars.Pages
         private IWebElement addSkillsButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
         private IWebElement newSkill => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
         private IWebElement newSkillLevel => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
+        private IWebElement invalidSkill => webDriver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
+        private IWebElement existingSkill => webDriver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
         private IWebElement editSkillsButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[1]"));
         private IWebElement editSkillsTextBox => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td/div/div[1]/input"));
         private IWebElement editSkillsLevelDropdown => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td/div/div[2]/select"));
@@ -184,8 +192,19 @@ namespace ProjectMars.Pages
         private IWebElement updateSkillsButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td/div/span/input[1]"));
         private IWebElement newEditSkill => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
         private IWebElement newEditSkillLevel => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
-        private IWebElement deleteSkillsRecord => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[2]"));
-        public void CreateSkillsRecords(IWebDriver driver,String skill ,string level)
+        private IWebElement deleteSkillButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[2]"));
+        private IWebElement deletedSkillData => webDriver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
+
+        public void ResetSkillRow()
+        {
+            int rowCount = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr")).Count;
+            for (int i = 0; i < rowCount; i++)
+            {
+                Thread.Sleep(2000);
+                deleteSkillButton.Click();
+            }
+        }
+        public void CreateSkillsRecords(String skill ,string level)
         {
  
             skillsButton.Click();
@@ -209,20 +228,30 @@ namespace ProjectMars.Pages
             addSkillsButton.Click();
             Thread.Sleep(2000);
         }
-        public string GetSkill(IWebDriver driver)
+        public string GetSkill()
         {
-            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 10);            
+            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 2);            
             return newSkill.Text;
         }
-        public string GetSkillLevel(IWebDriver driver)
+        public string GetSkillLevel()
         {
-            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]", 10);           
+            wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]", 2);           
             return newSkillLevel.Text;
         }
-
-        public void EditSkillsRecord(IWebDriver driver, string editSkill, string editSkillLevel)
+        public string GetInvalidSkill()
         {
-            wait.Waittobeclickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[1]", 5);
+            wait.Waittobevisible(driver, "Xpath", "//*[@class='ns-box-inner']", 2);
+            return invalidSkill.Text;
+        }
+        public string GetExistingSkill()
+        {
+            wait.Waittobevisible(driver, "Xpath", "//*[@class='ns-box-inner']", 2);
+            return existingSkill.Text;
+        }
+
+        public void EditSkillsRecord( string editSkill, string editSkillLevel)
+        {
+            wait.Waittobeclickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[1]", 2);
             editSkillsButton.Click();
             editSkillsTextBox.Clear();
             editSkillsTextBox.SendKeys(editSkill);
@@ -247,27 +276,29 @@ namespace ProjectMars.Pages
            
             updateSkillsButton.Click();
         }
-        public string GetEditSkill(IWebDriver driver)
+        public string GetEditSkill()
         {
             Thread.Sleep(2000);
             //wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 10);                                                                   
             return newEditSkill.Text;
         }
-        public string GetEditSkillLevel(IWebDriver driver)
+        public string GetEditSkillLevel()
         {
             Thread.Sleep(2000);
             //wait.Waittobevisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]", 10);                                                          
             return newEditSkillLevel.Text;
         }
-        public void DeleteSkillsRecord(IWebDriver driver)
-        {
-            //deleting updated skills record
+        public void DeleteSkillsRecord()
+        { 
             Thread.Sleep(2000);
-            
-            deleteSkillsRecord.Click();
-            
+            deleteSkillButton.Click();
             Thread.Sleep(2000);
 
+        }
+        public string GetDeletedSkill()
+        {
+            wait.Waittobevisible(driver, "Xpath", "//*[@class='ns-box-inner']", 2);
+            return deletedSkillData.Text;
         }
  
     }

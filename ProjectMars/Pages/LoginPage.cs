@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace ProjectMars.Pages
 {
-    public class LoginPage
+    public class LoginPage:CommonDriver
     {
         private IWebDriver webDriver;
-        public LoginPage(IWebDriver driver)
+        public LoginPage()
         {
             webDriver = driver;
         }
@@ -23,14 +23,14 @@ namespace ProjectMars.Pages
         private IWebElement passwordTextBox => webDriver.FindElement(By.Name("password"));
         private IWebElement loginButton => webDriver.FindElement(By.XPath("//button[contains(text(),'Login')]"));
 
-        public void LoginActions(IWebDriver driver,string emailid,string password)
-        {
-            
+        public void LoginActions(string emailid,string password)
+        { 
             signInButton.Click();
             emailTextBox.SendKeys(emailid);
             wait.Waittobevisible(driver, "Name", "password", 5); 
             passwordTextBox.SendKeys(password);
             loginButton.Click();
         }
+
     }
 }

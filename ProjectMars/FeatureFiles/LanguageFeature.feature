@@ -14,10 +14,12 @@ it helps people who seeking for languages can look at what details I hold.
 	Then the record should have new '<Language>' and '<Level>'
 
 	Examples: 
-	| Language                                | Level          |
-	| English                                 | Basic          |
-	| 123@#$                                  | Fluent         |
-	| Iam adding a new language as a sentence | Conversational |
+	| Language                                                                                                                                                                                                                                                    | Level            |
+	| English                                                                                                                                                                                                                                                     | Basic            |
+	| 123@#$                                                                                                                                                                                                                                                      | Fluent           |
+	| Iam adding a new language as a sentence                                                                                                                                                                                                                     | Conversational   |
+	| RemembertoplayaroundwiththeapplicationtrytoexplorethefunctionalityaroundwhatthelanguageandskillsfeatureshavetoofferintheprofilepageRemembertouseGoogleQuestionhuborStackOverflowifyouarestuckonaproblem,weknowattimesitcanbefrustratingtobestuckonaproblem  | Native/Bilingual |
+	
 
 	@regression
 	Scenario Outline: Create a new lanaguge record with InValid details 
@@ -67,4 +69,5 @@ it helps people who seeking for languages can look at what details I hold.
 	Examples: 
 	| CreateLanguage1 | CreateLevel1 | DeleteLanguage                              |
 	| German          | Fluent       | German has been deleted from your languages | 
+	
 	
