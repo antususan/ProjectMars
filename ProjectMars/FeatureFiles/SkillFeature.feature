@@ -13,10 +13,11 @@ Scenario Outline: Create a new skill record with Valid details
 	Then table should have the new '<Skill>' and  '<Level>' 
 
 	Examples: 
-	| Skill  | Level        |
-	| Dance  | Beginner     |
-	| @#&^*  | Expert       |
-	| 234567 | Intermediate |
+	| Skill                                                                                                                                                                                                                                                      | Level        |
+	| Dance                                                                                                                                                                                                                                                      | Beginner     |
+	| @#&^*                                                                                                                                                                                                                                                      | Expert       |
+	| 234567                                                                                                                                                                                                                                                     | Intermediate |
+	| RemembertoplayaroundwiththeapplicationtrytoexplorethefunctionalityaroundwhatthelanguageandskillsfeatureshavetoofferintheprofilepageRemembertouseGoogleQuestionhuborStackOverflowifyouarestuckonaproblem,weknowattimesitcanbefrustratingtobestuckonaproblem | Expert       |
 	
 	@regression 
 	Scenario Outline:Adding an invalid skill rcord 

@@ -22,7 +22,6 @@ namespace ProjectMars.Pages
         {
             webDriver = driver;
         }
-
         private IWebElement languageTab => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
         private IWebElement skillTab => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
         private IWebElement addNewButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
@@ -63,12 +62,11 @@ namespace ProjectMars.Pages
             
             for (int i = 0; i < rowCount; i++)
             {
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
                 Thread.Sleep(2000);
                 deleteLanguageButton.Click();
             }
         }
-        
         public void CreateLanguageRecord(string language ,string level)
         {
 
@@ -206,7 +204,6 @@ namespace ProjectMars.Pages
         }
         public void CreateSkillsRecords(String skill ,string level)
         {
- 
             skillsButton.Click();
             addNewSkillsButton.Click();
             addNewSkillsTextBox.SendKeys(skill);
